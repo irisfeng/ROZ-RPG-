@@ -657,7 +657,11 @@ PlayerSettings:
   cloudServicesEnabled:
     Analytics: 0
     Build: 0
+<<<<<<< HEAD
     Collab: 1
+=======
+    Collab: 0
+>>>>>>> master
     ErrorHub: 0
     Game_Performance: 0
     Hub: 0
