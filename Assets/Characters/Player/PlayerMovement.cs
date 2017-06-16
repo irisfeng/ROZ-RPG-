@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     ThirdPersonCharacter thirdPersonCharacter = null;   // A reference to the ThirdPersonCharacter on the object
     CameraRaycaster cameraRaycaster = null;
     Vector3 currentDestination, clickPoint;
-    AICharacterControl aiCharacterControl = null;
+//    AICharacterControl aiCharacterControl = null;
     GameObject walkTarget = null;
 
 	bool isInDirectMode = false;
@@ -36,47 +36,47 @@ public class PlayerMovement : MonoBehaviour
         cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
         thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
         currentDestination = transform.position;
-        aiCharacterControl = GetComponent<AICharacterControl>();
+//        aiCharacterControl = GetComponent<AICharacterControl>();
         walkTarget = new GameObject("walkTarget");
 
-        cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
+//        cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
     }
 
-    void ProcessMouseClick(RaycastHit raycastHit, int layerHit)
-    {
-        switch (layerHit)
-        {
-            case enemyLayerNumber:
-                // navigate to enemy
-                GameObject enemy = raycastHit.collider.gameObject;
-                aiCharacterControl.SetTarget(enemy.transform);
-                break;
-            case walkableLayerNumber:
-                // navigate to point on the ground
-                walkTarget.transform.position = raycastHit.point;
-                aiCharacterControl.SetTarget(walkTarget.transform);
-                break;
-            default:
-                Debug.LogWarning("Don't know how to handle mouse click for player movement");
-                return;
-        }
-    }
+//    void ProcessMouseClick(RaycastHit raycastHit, int layerHit)
+//    {
+//        switch (layerHit)
+//        {
+//            case enemyLayerNumber:
+//                // navigate to enemy
+//                GameObject enemy = raycastHit.collider.gameObject;
+//                aiCharacterControl.SetTarget(enemy.transform);
+//                break;
+//            case walkableLayerNumber:
+//                // navigate to point on the ground
+//                walkTarget.transform.position = raycastHit.point;
+//                aiCharacterControl.SetTarget(walkTarget.transform);
+//                break;
+//            default:
+//                Debug.LogWarning("Don't know how to handle mouse click for player movement");
+//                return;
+//        }
+//    }
 
 	// Fixed update is called in sync with physics
- //   void FixedUpdate()
-	//{
-	//	if (Input.GetKeyDown (KeyCode.G)) 		// G for gamepad. TODO  add to menu
-	//	{		
-	//		isInDirectMode = !isInDirectMode; // toggle mode
-	//		currentDestination = transform.position; // clear the click target
-	//	}
-	//	if (isInDirectMode) {
-	//		ProcessDirectMovement ();
-	//	} else 
-	//	{
-	//		ProcessMouseMovement ();
-	//	}
-	//}
+    void Update()
+	{
+//		if (Input.GetKeyDown (KeyCode.G)) 		// G for gamepad. TODO  add to menu
+//		{		
+//			isInDirectMode = !isInDirectMode; // toggle mode
+//			currentDestination = transform.position; // clear the click target
+//		}
+//		if (isInDirectMode) {
+			ProcessDirectMovement ();
+//		} else 
+//		{
+//			ProcessMouseMovement ();
+//		}
+	}
     
  // TODO make this get called again
 	void ProcessDirectMovement()
